@@ -1,48 +1,24 @@
 Package.describe({
-  name: 'inspiraluna:accounts-password-doichain',
+  name: 'doichainx:accounts-password-doichain',
   summary: "accounts-password with additional storage for proof of existence on the Doichain blockchain",
   git: 'https://github.com/inspiraluna/meteor.git',
-  documentation: 'README.md'
-
-  // Note: 2.2.0-beta.3 was published during the Meteor 1.6 prerelease
-  // process, so it might be best to skip to 2.3.x instead of reusing
-  // 2.2.x in the future. The version was also bumped to 2.0.0 temporarily
-  // during the Meteor 1.5.1 release process, so versions 2.0.0-beta.2
-  // through -beta.5 and -rc.0 have already been published.
-  version: "0.0.1"
+  documentation: 'README.md',
+  version: "0.0.2"
 });
 
 Package.onUse(api => {
-  api.use('npm-bcrypt', 'server');
-
   api.use([
-    'accounts-base',
-    'srp',
-    'sha',
-    'ejson',
-    'ddp',
-    'http',
-    'doichain:settings'
-  ], ['client', 'server']);
+    'accounts-password@1.5.1',
+    'http@1.4.2',
+    'doichain:settings@0.1.6',
+    'erasaur:meteor-lodash@4.0.0'
+  ], ['server']);
 
   // Export Accounts (etc) to packages using this one.
   api.imply('accounts-base', ['client', 'server']);
-
-  api.use('email', 'server');
-  api.use('random', 'server');
-  api.use('check', 'server');
-  api.use('ecmascript');
-
-  api.addFiles('email_templates.js', 'server');
   api.addFiles('password_server.js', 'server');
-  api.addFiles('password_client.js', 'client');
 });
 
 Package.onTest(api => {
-  api.use(['accounts-password', 'tinytest', 'test-helpers', 'tracker',
-           'accounts-base', 'random', 'email', 'check', 'ddp', 'ecmascript']);
-  api.addFiles('password_tests_setup.js', 'server');
-  api.addFiles('password_tests.js', ['client', 'server']);
-  api.addFiles('email_tests_setup.js', 'server');
-  api.addFiles('email_tests.js', 'client');
+
 });
