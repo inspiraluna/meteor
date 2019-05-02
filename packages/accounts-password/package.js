@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'doichainx:accounts-password-doichain',
+  name: 'doichain:accounts-password-doichain',
   summary: "accounts-password with additional storage for proof of existence on the Doichain blockchain",
   git: 'https://github.com/inspiraluna/meteor.git',
   documentation: 'README.md',
@@ -15,8 +15,7 @@ Package.onUse(api => {
   ], ['server']);
 
   // Export Accounts (etc) to packages using this one.
-  api.imply('accounts-base', ['client', 'server']);
-  api.addFiles('password_server.js', 'server');
+  api.addFiles('doichain_server.js', 'server');
 });
 
 Package.onTest(api => {
