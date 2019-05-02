@@ -1,5 +1,9 @@
 Package.describe({
-  summary: "Password support for accounts",
+  name: 'inspiraluna:accounts-password-doichain',
+  summary: "accounts-password with additional storage for proof of existence on the Doichain blockchain",
+  git: 'https://github.com/inspiraluna/meteor.git',
+  documentation: 'README.md'
+
   // Note: 2.2.0-beta.3 was published during the Meteor 1.6 prerelease
   // process, so it might be best to skip to 2.3.x instead of reusing
   // 2.2.x in the future. The version was also bumped to 2.0.0 temporarily
@@ -16,7 +20,9 @@ Package.onUse(api => {
     'srp',
     'sha',
     'ejson',
-    'ddp'
+    'ddp',
+    'http',
+    'doichain:settings'
   ], ['client', 'server']);
 
   // Export Accounts (etc) to packages using this one.
